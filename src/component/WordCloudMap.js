@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
-import ReactWordcloud from 'react-wordcloud';
-import wordsExample from "./words";
+import ReactWordcloud from '../wordcloud';
 
-const WordCloudMap = () => {
+const WordCloudMap = (props) => {
   const callbacks = {
     // getWordColor: word => word.value > 50 ? "blue" : "red",
-    onWordClick: console.log,
+    onWordClick: props.onWordClick,
     onWordMouseOver: console.log,
     // getWordTooltip: word => `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
   }
   const options = {
-    rotations: 1,
-    rotationAngles: [0, 0],
+    rotations: 2,
+    rotationAngles: [-90, 0],
     fontFamily: "impact",
+    enableOptimizations: true
+    // deterministic: true
   };
-  const [words, setWords] = useState(wordsExample)
   return <ReactWordcloud
     callbacks={callbacks}
     options={options}
     // size={size}
-    words={words}
+    words={props.words}
   />
 }
 export default WordCloudMap;
