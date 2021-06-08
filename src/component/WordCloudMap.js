@@ -9,10 +9,11 @@ const WordCloudMap = (props) => {
     // getWordTooltip: word => `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
   }
   const options = {
-    rotations: 2,
-    rotationAngles: [-90, 0],
+    rotations: 1,
+    rotationAngles: [0, 0],
     fontFamily: "impact",
-    enableOptimizations: true
+    enableOptimizations: true,
+    // scale: 'log'
     // deterministic: true
   };
   return <ReactWordcloud

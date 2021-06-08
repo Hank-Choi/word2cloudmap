@@ -50,6 +50,10 @@ export default function Cloud() {
       n = words.length,
       i = -1,
       tags = [],
+      x_min = 3000,
+      x_max = -3000,
+      y_min = 3000,
+      y_max = -3000,
       data = words
         .map(function(d, i) {
           d.text = text.call(this, d, i);
@@ -59,27 +63,31 @@ export default function Cloud() {
           d.rotate = rotate.call(this, d, i);
           d.size = ~~fontSize.call(this, d, i);
           d.padding = padding.call(this, d, i);
+          x_min = d.x < x_min ? d.x : x_min;
+          x_max = d.x > x_max ? d.x : x_max;
+          y_min = d.y < y_min ? d.y : y_min;
+          y_max = d.y > y_max ? d.y : y_max;
           return d;
         })
         .sort(function(a, b) {
           return b.size - a.size;
-        });
+        }),
+    x_size = x_max-x_min,
+    y_size = y_max-y_min;
+    console.log(x_size)
+    console.log(y_size)
 
-    // Added by react-wordcloud
+      // Added by react-wordcloud
     // Allows to calculate a subset of data instead of all of the words at once
     function multiStep(from, to) {
       for (let i = from; i < to; i += 1) {
         const d = data[i];
-        d.x = size[0]/2
-        d.y = size[1]/2
-        // if(i !== 0){
-        //   d.x = (size[0] * (random() + 0.5)) >> 1;
-        //   d.y = (size[1] * (random() + 0.5)) >> 1;
-        // }
-        // else {
-        //   d.x = size[0]/2
-        //   d.y = size[1]/2
-        // }
+        d.x = (size[0] * ((d.x-x_min)/x_size + 0.5)) >> 1
+        d.y = (size[1] * ((d.y-y_min)/y_size + 0.5)) >> 1
+        // d.x = (size[0]) >> 1;
+        // d.y = (size[1]) >> 1;
+        // d.x = (size[0] * (random() + 0.5)) >> 1;
+        // d.y = (size[1] * (random() + 0.5)) >> 1;
         cloudSprite(contextAndRatio, d, data, i);
         if (d.hasText && place(board, d, bounds)) {
           tags.push(d);

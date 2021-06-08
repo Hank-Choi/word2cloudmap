@@ -35,8 +35,7 @@ function App() {
             onWordClick={async (word) => {
               setCurrentWord(word.text)
               const similarWords = await getSimilarWords(word.text)
-              console.log(similarWords)
-              setWords([{text:word.text,value:1},...similarWords.data.words])
+              setWords(similarWords.data.words)
             }}
             words={words}/>
         </div>
