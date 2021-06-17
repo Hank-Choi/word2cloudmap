@@ -7,7 +7,7 @@ import clonedeep from 'lodash.clonedeep';
 import seedrandom from 'seedrandom';
 import tippy from 'tippy.js';
 
-import optimizedD3Cloud from './optimized-d3-cloud';
+import optimizedD3Cloud from './custom-d3-cloud';
 import {
   choose,
   getFontScale,

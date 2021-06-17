@@ -74,8 +74,6 @@ export default function Cloud() {
         }),
     x_size = x_max-x_min,
     y_size = y_max-y_min;
-    console.log(x_size)
-    console.log(y_size)
 
       // Added by react-wordcloud
     // Allows to calculate a subset of data instead of all of the words at once
@@ -283,7 +281,7 @@ function cloudFontNormal() {
 }
 
 function cloudFontSize(d) {
-  return Math.sqrt(d.value);
+  return Math.log(d.value)
 }
 
 function cloudRotate() {

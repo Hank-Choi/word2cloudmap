@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.app {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.app-header {
+    margin-top: 30px;
+  margin-left: 50px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
